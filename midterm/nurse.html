@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8">Nurse Dashboard</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Patient Alert Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500 hover:shadow-lg transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">Patient Alert</p>
+                        <p class="text-3xl font-bold text-red-600 mt-2">3</p>
+                    </div>
+                    <div class="text-4xl"></div>
+                </div>
+                <p class="text-gray-500 text-xs mt-4">Active alerts requiring attention</p>
+            </div>
+
+            <!-- Bed Available Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500 hover:shadow-lg transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">Bed Available</p>
+                        <p class="text-3xl font-bold text-green-600 mt-2">7</p>
+                    </div>
+                    <div class="text-4xl"></div>
+                </div>
+                <p class="text-gray-500 text-xs mt-4">Available beds in facility</p>
+            </div>
+
+            <!-- Medicine Order Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-lg transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">Medicine Order</p>
+                        <p class="text-3xl font-bold text-blue-600 mt-2">12</p>
+                    </div>
+                    <div class="text-4xl"></div>
+                </div>
+                <p class="text-gray-500 text-xs mt-4">Pending medication orders</p>
+            </div>
+
+            <!-- Database Status Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500 hover:shadow-lg transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">Database Status</p>
+                        <p class="text-3xl font-bold text-purple-600 mt-2"></p>
+                    </div>
+                    <div class="text-lg font-semibold text-green-500">Active</div>
+                </div>
+                <p class="text-gray-500 text-xs mt-4">System database operational</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

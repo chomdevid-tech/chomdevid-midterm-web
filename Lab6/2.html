@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-300 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="bg-black p-6 text-white">
+            <h1 class="text-2xl font-semibold">Customer Onboarding</h1>
+            <p class="text-gray-400 text-sm">Fill in the details to register a new client.</p>
+        </div>
+
+        <form id="regForm" class="p-8 space-y-9">
+            <section>
+                <h3 class="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Personal Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-sm text-gray-600">Full Name</label>
+                        <input type="text" id="fullName"  class="w-full mt-1 p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Email Address</label>
+                        <input type="email" id="email"  class="w-full mt-1 p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Phone</label>
+                        <input type="text" id="phone" class="w-full mt-1 p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">City</label>
+                        <select id="city" class="w-full mt-1 p-2 border rounded-md">
+                            <option>Phnom Penh</option>
+                            <option>Siem Reap</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <div class="flex justify-end space-x-4">
+                <button type="button" onclick="location.href='detail.html'" class="text-gray-900 py-2">View List</button>
+                <button type="submite" class="bg-black px-8 border rounded-2xl p-3 text-white py-2 hover:bg-gray-700 transition"> Save User</button>
+            </div>
+
+            
+        </form>
+    </div>

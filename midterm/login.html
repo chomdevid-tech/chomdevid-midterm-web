@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-96 border border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Login</h2>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Role</label>
+                <select id="role" 
+                        class="w-full mt-1 p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="">Select Role</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="nurse">Nurse</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Practitioner ID</label>
+                <input type="text" id="practitionerId" 
+                       class="w-full mt-1 p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+                       placeholder="Enter practitioner ID">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Password</label>
+                <div class="relative">
+                    <input type="password" id="password" 
+                           oninput="checkPasswordStrength()" 
+                           class="w-full mt-1 p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+                           placeholder="Enter password">
+                    <button type="button" onclick="togglePassword()" 
+                            class="absolute right-3 top-3 text-gray-600 hover:text-gray-800 cursor-pointer">
+                        <span id="toggleIcon"></span>
+                    </button>
+                </div>
+                <!-- Password Strength Feedback -->
+                <div class="mt-2 space-y-1">
+                    <div class="flex items-center space-x-2">
+                        
+                          
+                        </div>
+                    </div>
+                  
+                    <ul class="text-xs space-y-1">
+                        <li id="checkMinLength" class="text-gray-400"> At least 8 characters</li>
+                        <li id="checkUppercase" class="text-gray-400"> Contains uppercase letter</li>
+                        <li id="checkNumber" class="text-gray-400"> Contains number</li>
+                        <li id="checkSpecial" class="text-gray-400 mt-4"> Contains special character</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button onclick="login()" 
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 mt-5">
+                Sign In
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = ' ';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = ' ' ;
+            }
+        }
+
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthLevel = document.getElementById('strengthLevel');
+            
+            // Criteria checks
+            const hasMinLength = password.length >= 8;
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            // Update DOM elements
+            updateCriteria('checkMinLength', hasMinLength);
+            updateCriteria('checkUppercase', hasUppercase);
+            updateCriteria('checkNumber', hasNumber);
+            updateCriteria('checkSpecial', hasSpecial);
+            
+            // Calculate strength
+            let strength = 0;
+            if (password.length > 0) strength++;
+            if (hasMinLength) strength++;
+            if (hasUppercase) strength++;
+            if (hasNumber) strength++;
+            if (hasSpecial) strength++;
+            
+        
+            
+            
+            // Update color and text
+            if (strength === 0) {
+                strengthLevel.textContent = '-';
+            } else if (strength <= 2) {
+               
+                strengthLevel.textContent = 'Weak';
+            } else if (strength <= 3) {
+                strengthLevel.textContent = 'Fair';
+            } else if (strength <= 4) {
+                strengthLevel.textContent = 'Good';
+            } else {
+                strengthLevel.textContent = 'Strong';
+            }
+        }
+
+    
+
+        function login() {
+            const role = document.getElementById('role').value;
+            const practitionerId = document.getElementById('practitionerId').value;
+            const pass = document.getElementById('password').value;
+
+            // Basic check to ensure fields aren't empty
+            if (role && practitionerId && pass) {
+                // Store session in cookie
+                document.cookie = `user_session=${practitionerId}; path=/; max-age=3600; SameSite=Lax`;
+                document.cookie = `user_role=${role}; path=/; max-age=3600; SameSite=Lax`;
+                
+                window.location.href = 'Admin.html';
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- role select dropdown pratcitiner ID, password filed and "show password, password checker real time feed back , via DOM  redirect to dashbord if active rolr cookies exit "  -->

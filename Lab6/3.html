@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-8 text-gray-800">
+    <div class="max-w-5xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">User Directory</h1>
+            <button onclick="location.href='register.html'" class="bg-blue-600 text-white px-4 py-2 rounded-lg">+ Add New</button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                        <th class="px-6 py-4 text-sm font-semibold text-gray-600">Full Name</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-gray-600">Email</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-gray-600">City</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-gray-600">Date Added</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody" class="divide-y divide-gray-100">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Security Check
+        if (!document.cookie.includes('user_session=')) window.location.href = 'login.html';
+
+        // Load users on page load
+        window.addEventListener('load', () => {
+            const users = JSON.parse(localStorage.getItem('userList') || '[]');
+            const tableBody = document.getElementById('userTableBody');
+            
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50 transition';
+                row.innerHTML = `
+                    <td class="px-6 py-4 text-sm">${user.fullName}</td>
+                    <td class="px-6 py-4 text-sm">${user.email}</td>
+                    <td class="px-6 py-4 text-sm">${user.city}</td>
+                    <td class="px-6 py-4 text-sm">${user.date}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        });
+    </script>
